@@ -64,8 +64,10 @@ Content-Type: application/json
 }
 ```
 
+CLI:
+
 ```bash
-curl -X POST http://localhost:8080/loans -H "Content-Type: application/json" -d '{"borrowerId": "78352adc-9085-40a5-9236-8f43a15e1f91", "principalAmount": "5000000", "rate": "0.05", "returnOnInvestment": "0.03"}'
+curl -X POST http://localhost:8080/loans -H "Content-Type: application/json" -d '{"borrowerId": "<uuid>", "principalAmount": "5000000", "rate": "0.05", "returnOnInvestment": "0.03"}'
 ```
 
 ### Get loan
@@ -74,8 +76,10 @@ curl -X POST http://localhost:8080/loans -H "Content-Type: application/json" -d 
 GET /loans/<loan-id>
 ```
 
+CLI:
+
 ```bash
-curl http://localhost:8080/loans/dd184c6a-18db-4c0f-9ced-17e499fc939d
+curl http://localhost:8080/loans/<loan-id>
 ```
 
 ### Approve loan
@@ -91,8 +95,10 @@ Content-Type: application/json
 }
 ```
 
+CLI:
+
 ```bash
-curl -X POST http://localhost:8080/loans/dd184c6a-18db-4c0f-9ced-17e499fc939d/approval -H "Content-Type: application/json" -d '{"fieldValidatorEmployeeId": "78352adc-9085-40a5-9236-8f43a15e1f91", "visitProofUrl": "https://example.com/proof.pdf", "approvalDate": "2026-08-30T10:00:00Z"}'
+curl -X POST http://localhost:8080/loans/<loan-id>/approval -H "Content-Type: application/json" -d '{"fieldValidatorEmployeeId": "<uuid>", "visitProofUrl": "https://example.com/proof.pdf", "approvalDate": "2026-08-30T10:00:00Z"}'
 ```
 
 ### Add investment
@@ -107,8 +113,10 @@ Content-Type: application/json
 }
 ```
 
+CLI:
+
 ```bash
-curl -X POST http://localhost:8080/loans/dd184c6a-18db-4c0f-9ced-17e499fc939d/investments -H "Content-Type: application/json" -d '{"investorId": "78352adc-9085-40a5-9236-8f43a15e1f91", "amount": "2000000"}'
+curl -X POST http://localhost:8080/loans/<loan-id>/investments -H "Content-Type: application/json" -d '{"investorId": "<uuid>", "amount": "2000000"}'
 ```
 
 ### Disburse loan
@@ -124,8 +132,10 @@ Content-Type: application/json
 }
 ```
 
+CLI:
+
 ```bash
-curl -X POST http://localhost:8080/loans/dd184c6a-18db-4c0f-9ced-17e499fc939d/disbursement -H "Content-Type: application/json" -d '{"signedAgreementUrl": "https://example.com/agreement.pdf","fieldOfficerEmployeeId": "78352adc-9085-40a5-9236-8f43a15e1f91", "disbursementDate": "2026-08-30T10:00:00Z"}'
+curl -X POST http://localhost:8080/loans/<loan-id>/disbursement -H "Content-Type: application/json" -d '{"signedAgreementUrl": "https://example.com/agreement.pdf","fieldOfficerEmployeeId": "<uuid>", "disbursementDate": "2026-08-30T10:00:00Z"}'
 ```
 
 Amounts are accepted as strings to avoid JSON floating-point representation issues at the API boundary.
