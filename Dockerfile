@@ -15,7 +15,7 @@ RUN CGO_ENABLED=0 GOOS=linux \
     go build -ldflags "-s -w" \
     -o /loan-service ./cmd/server
 
-FROM mirror.gcr.io/library/alpine:3.24 AS production
+FROM mirror.gcr.io/library/alpine:20260805 AS production
 
 WORKDIR /app
 
