@@ -9,7 +9,8 @@ on:
     branches: [main]
 
 env:
-  IMAGE: ghcr.io/${{ github.repository }}
+  IMAGE: ghcr.io/test
+  # IMAGE: ghcr.io/${{ github.repository }}
 
 permissions:
   contents: read
@@ -76,16 +77,16 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
-      - name: Format repo slug
-        uses: actions/github-script@v4
-        id: repo_slug
-        with:
-          result-encoding: string
-          script: return `ghcr.io/${github.repository.toLowerCase()}`
+      # - name: Format repo slug
+      #   uses: actions/github-script@v4
+      #   id: repo_slug
+      #   with:
+      #     result-encoding: string
+      #     script: return `ghcr.io/${github.repository.toLowerCase()}`
       - name: Build image
-        run: docker build -t "${{ steps.repo_slug.outputs.result }}:${GITHUB_SHA}" .
+        run: docker build -t "${IMAGE}:${GITHUB_SHA}" .
       - name: Save image
-        run: docker save "${{ steps.repo_slug.outputs.result }}:${GITHUB_SHA}" -o image.tar
+        run: docker save "${IMAGE}:${GITHUB_SHA}" -o image.tar
       - uses: actions/upload-artifact@v4
         with:
           name: image
