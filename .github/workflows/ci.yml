@@ -26,8 +26,23 @@ jobs:
         with:
           go-version: "1.26"
           cache: true
-      - run: go test ./...
-      - run: go test -race ./...
+      - name: Run tests
+        run: go test ./...
+      - name: Run concurrency tests
+        run: go test -race ./...
+
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.26"
+      - name: GoSec
+        uses: securego/gosec@master
+        with:
+          args: ./...
 
   build:
     runs-on: ubuntu-latest
