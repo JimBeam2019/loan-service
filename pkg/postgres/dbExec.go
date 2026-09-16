@@ -139,7 +139,9 @@ func (db *Database) ExecTransactionReturnError(
 
 	defer func() {
 		if err != nil {
-			tx.Rollback(ctx)
+			if err = tx.Rollback(ctx); err != nil {
+				logger.Error().Err(err).Msg("transaction rollback")
+			}
 		}
 	}()
 
@@ -185,7 +187,9 @@ func (db *Database) ExecTransactionReturnRes(
 
 	defer func() {
 		if err != nil {
-			tx.Rollback(ctx)
+			if err = tx.Rollback(ctx); err != nil {
+				logger.Error().Err(err).Msg("transaction rollback")
+			}
 		}
 	}()
 
@@ -230,7 +234,9 @@ func (db *Database) ExecTransactionReturnIds(
 
 	defer func() {
 		if err != nil {
-			tx.Rollback(ctx)
+			if err = tx.Rollback(ctx); err != nil {
+				logger.Error().Err(err).Msg("transaction rollback")
+			}
 		}
 	}()
 
@@ -299,7 +305,9 @@ func (db *Database) ExecTransactionReturnUuids(
 
 	defer func() {
 		if err != nil {
-			tx.Rollback(ctx)
+			if err = tx.Rollback(ctx); err != nil {
+				logger.Error().Err(err).Msg("transaction rollback")
+			}
 		}
 	}()
 
@@ -368,7 +376,9 @@ func (db *Database) ExecQueryReturnId(
 
 	defer func() {
 		if err != nil {
-			tx.Rollback(ctx)
+			if err = tx.Rollback(ctx); err != nil {
+				logger.Error().Err(err).Msg("transaction rollback")
+			}
 		}
 	}()
 
@@ -414,7 +424,9 @@ func (db *Database) ExecQueryReturnBigId(
 
 	defer func() {
 		if err != nil {
-			tx.Rollback(ctx)
+			if err = tx.Rollback(ctx); err != nil {
+				logger.Error().Err(err).Msg("transaction rollback")
+			}
 		}
 	}()
 
@@ -460,7 +472,9 @@ func (db *Database) ExecQueryReturnUuid(
 
 	defer func() {
 		if err != nil {
-			tx.Rollback(ctx)
+			if err = tx.Rollback(ctx); err != nil {
+				logger.Error().Err(err).Msg("transaction rollback")
+			}
 		}
 	}()
 
@@ -507,7 +521,9 @@ func (db *Database) ExecQueryNoRowsReturnUuid(
 
 	defer func() {
 		if err != nil {
-			tx.Rollback(ctx)
+			if err = tx.Rollback(ctx); err != nil {
+				logger.Error().Err(err).Msg("transaction rollback")
+			}
 		}
 	}()
 
