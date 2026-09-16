@@ -71,7 +71,9 @@ func runInMemory(router *gin.Engine) error {
 
 	http.NewLoanHandler(router, loanUC)
 
-	router.Run(":8080")
+	if err := router.Run(":8080"); err != nil {
+		return err
+	}
 
 	return nil
 }
@@ -107,7 +109,9 @@ func runInPostgres(ctx context.Context, router *gin.Engine, env base.Env) error 
 
 	http.NewLoanHandler(router, loanUC)
 
-	router.Run(":8080")
+	if err := router.Run(":8080"); err != nil {
+		return err
+	}
 
 	return nil
 }
